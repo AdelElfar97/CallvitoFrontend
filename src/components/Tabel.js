@@ -34,6 +34,7 @@ export default function Tabel() {
   const [loadingData, setLoadingData] = useState(true);
 
   const [rows, setRows] = useState([]);
+  //when editing , the textField is enabled, enabled carries the value of id of the row
   const [enabled, setEnabled] = useState("");
 
   const classes = useStyles();
@@ -45,6 +46,7 @@ export default function Tabel() {
     setDescription(e.target.value);
   };
 
+  //when user clicks the check icon , confirms editing row
   const handleEdit = (row) => {
     setEnabled("");
     setLoadingData(true);
@@ -52,10 +54,13 @@ export default function Tabel() {
     dispatch(editTask(row.id, row.title, row.description));
   };
 
+    //when user clicks the delete icon , confirms deleting row
   const handleDel = (id) => {
     setLoadingData(true);
     dispatch(delTask(id));
   };
+
+  
 
   const isDisabled = (id) => {
     return enabled !== id;
